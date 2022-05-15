@@ -1,11 +1,21 @@
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.net.URL;
+import java.util.List;
+import java.util.Set;
 
 public class FirstTest {
 
@@ -30,9 +40,31 @@ public class FirstTest {
     {
         driver.quit ();
     }
+
+    private void assertElementHasText (String locator, String searchingText, String error_message, long timeoutInSecond)
+    {
+        WebDriverWait wait = new WebDriverWait(driver, timeoutInSecond);
+        //wait.withMessage(error_message + "\n");
+
+        By element = By.id(locator);
+        wait.until(ExpectedConditions.presenceOfElementLocated(element));
+        String foundedText = driver.findElement(By.id(locator)).getText();
+        Assert.assertEquals(error_message, searchingText, foundedText);
+    }
+
     @Test
     public void firstTest()
     {
-        System.out.println("First test run");
+        WebElement element_to_init_search =driver.findElementByXPath("//*[contains(@text,'Search Wikipedia')]");
+        element_to_init_search.click();
+
+                assertElementHasText(
+                "org.wikipedia:id/search_src_text",
+                "Search…",
+                "Can't find text 'Search…' in string",
+                5
+        );
     }
+
+
 }
