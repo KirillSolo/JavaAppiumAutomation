@@ -53,7 +53,7 @@ public class FirstTest {
     }
 
     @Test
-    public void firstTest()
+    public void TestEx2()
     {
         WebElement element_to_init_search =driver.findElementByXPath("//*[contains(@text,'Search Wikipedia')]");
         element_to_init_search.click();
@@ -65,6 +65,20 @@ public class FirstTest {
                 5
         );
     }
-
-
+    @Test
+    public void TestEx3 ()
+    {
+        WebElement element_to_init_search =driver.findElementByXPath("//*[contains(@text,'Search Wikipedia')]");
+        element_to_init_search.click();
+        WebElement element_to_enter_search_line = driver.findElementByXPath("//*[contains(@text,'Search…')]");
+        element_to_enter_search_line.sendKeys ("Java");
+        List <WebElement> counts_of_elements = driver.findElementsById("org.wikipedia:id/page_list_item_container");
+        System.out.println(counts_of_elements.size());
+        assert (counts_of_elements.size()>1);
+        WebElement clear_list = driver.findElementById("org.wikipedia:id/search_close_btn");
+        clear_list.click();
+        List <WebElement> counts_of_elements_2 = driver.findElementsById("org.wikipedia:id/page_list_item_container");
+        System.out.println(counts_of_elements_2.size());
+        assert (counts_of_elements_2.size()==0);
+    }
 }
