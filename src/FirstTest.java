@@ -283,11 +283,9 @@ public class FirstTest {
                 5
         );
 
-        waitForElementPresent(
-                By.id("org.wikipedia:id/view_page_title_text"),
-                "25",
-                0
-        );
+        List<WebElement> counts_of_elements = driver.findElementsById("org.wikipedia:id/view_page_title_text");
+        System.out.println(counts_of_elements.size());
+        assert (counts_of_elements.size() > 0);
     }
 }
 
