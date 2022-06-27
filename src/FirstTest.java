@@ -164,7 +164,7 @@ public class FirstTest {
         waitForElementAndClick(
                 By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_container']//*[@text='Object-oriented programming language']"),
                 "3",
-                10
+                15
         );
 
         waitForElementPresent(
@@ -175,29 +175,33 @@ public class FirstTest {
 
         waitForElementAndClick(
                 By.xpath("//android.widget.ImageView[@content-desc='More options']"),
-                "5",
+                "5.1",
                 15
         );
-
+        waitForElementPresent(
+                By.xpath("//*[@text='Add to reading list']"),
+                "5.2",
+                10
+                );
         waitForElementAndClick(
                 By.xpath("//*[@text='Add to reading list']"),
                 "6",
-                15
+                20
         );
         waitForElementAndClick(
                 By.id("org.wikipedia:id/onboarding_button"),
                 "7",
-                15
+                20
         );
         waitForElementAndClear(
                 By.id("org.wikipedia:id/text_input"),
                 "8",
                 5
         );
-        String neme_of_folder = "Test";
+        String name_of_folder = "Test";
         waitForElementAndSendKeys(
                 By.id("org.wikipedia:id/text_input"),
-                neme_of_folder,
+                name_of_folder,
                 "9",
                 5
         );
@@ -242,12 +246,12 @@ public class FirstTest {
         waitForElementAndClick(
                 By.xpath("//*[@text='Add to reading list']"),
                 "17",
-                15
+                25
         );
         waitForElementAndClick(
                 By.xpath("//*[@text='Test']"),
                 "18",
-                10
+                15
         );
         waitForElementAndClick(
                 By.xpath("//android.widget.ImageButton[@content-desc='Navigate up']"),
@@ -265,18 +269,24 @@ public class FirstTest {
                 10
         );
         waitForElementAndClick(
-                By.xpath("//*[@resource-id='org.wikipedia:id/item_container']//*[@text='"+neme_of_folder+"']"),
+                By.xpath("//*[@resource-id='org.wikipedia:id/item_container']//*[@text='"+name_of_folder+"']"),
                 "22",
-                20
+                5
         );
         swipefElementToLeft(
                 By.xpath("//*[@text='Java (programming language)']"),
                 "23"
         );
-        waitForElementPresent(
-                By.xpath("//*[@text='Wikipedia']"),
+        waitForElementAndClick(
+                By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_container']//*[@text='free multilingual online encyclopedia']"),
                 "24",
-                10
+                5
+        );
+
+        waitForElementPresent(
+                By.id("org.wikipedia:id/view_page_title_text"),
+                "25",
+                0
         );
     }
 }
